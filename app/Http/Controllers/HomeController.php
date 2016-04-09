@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\FbUser;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\FbUserService;
 
 class HomeController extends Controller
 {
@@ -19,11 +22,13 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
+     * @param $service
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FbUserService $service)
     {
-        return view('home');
+        $fb_users = $service->getFbUsers();
+
+        return view('home', ['fb_users' => $fb_users]);
     }
 }

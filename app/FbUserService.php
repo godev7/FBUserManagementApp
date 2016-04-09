@@ -8,12 +8,12 @@ class FbUserService
 {
     public function createOrGetUser(ProviderUser $providerUser)
     {
-/*        $account = FbUser::whereFbId($providerUser->getId())
+        $account = FbUser::whereFbId($providerUser->getId())
             ->first();
 
         if ($account) {
             return $account->user;
-        } else {*/
+        } else {
 
             $account = new FbUser([
                 'fb_id' => $providerUser->getId(),
@@ -36,7 +36,12 @@ class FbUserService
 
             return $user;
 
-//        }
+        }
 
+    }
+
+    public function getFbUsers()
+    {
+        return FbUser::get();
     }
 }
